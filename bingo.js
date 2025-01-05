@@ -71,14 +71,20 @@ var BINGO = {
     var cell;
     var image;
 
+    const bingoHeight = this.getValueFromElement("height");
+    const bingoWidth = this.getValueFromElement("width");
+    const numRequiredImages = bingoHeight * bingoWidth;
+    if (this.images.length < numRequiredImages) {
+      alert(`You only added ${this.images.length} / ${numRequiredImages} images.`);
+      return;
+    }
+
     this.shuffle();
     const centerIsFree = document.getElementById("free-center").checked;
     document.getElementById("bingo-header").textContent = document.getElementById("title").value;
     card = document.getElementsByTagName("tbody")[0];
     card.innerHTML = "";
 
-    const bingoHeight = this.getValueFromElement("height");
-    const bingoWidth = this.getValueFromElement("width");
     for (i = 0; i < bingoHeight; i += 1) {
       row = document.createElement("tr");
       for (j = 0; j < bingoWidth; j += 1) {
